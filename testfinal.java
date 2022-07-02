@@ -1,47 +1,70 @@
 package com.example;
 
-import java.io.File;
+
 import java.io.FileWriter;
 import java.io.IOException;
+
+import com.check;
 
 public class testfinal {
        static int rows;
        static int cols;
-
+       static boolean c;
     public static void main(String[] args) throws IOException {
 
         //File newfiFile = new File("/Users/jaideep/java/demo/src/data/test.txt");
-        FileWriter writer = new FileWriter("test.txt");
-       
-      
 
-        String filepath="/Users/jaideep/java/demo/src/data/jtc.xlsx";
-        String sheetname="Sheet1";
-        utils cell = new utils(filepath, sheetname);
+         check bCheck= new check();
+        
         
        
-        // cell.getcell(1, 2);
-        // cell.getcell(1, 3);
 
-        //System.out.println(s);
+       FileWriter writer = new FileWriter("testxls.txt",true);
 
-        rows= cell.getRowcount();
-        cols= cell.getcols();
-        //writer.write("sadada"); 
-        //writer.close();
+        String filepath="/Users/jaideep/java/demo/src/data/student.xls";
+        String sheetname="Sheet1";
+        
+        c=bCheck.filecheck(filepath);
 
-        for(int r=0; r<rows; r++){
+        if(c==false){
+            xlsx cell = new xlsx(filepath, sheetname);
+            rows= cell.getRowcount();
+            cols= cell.getcols();
             
-            for(int c=0; c<cols; c++){
+            for(int r=0; r<rows; r++){
                 
-                Object s= cell.getcell(r, c);
-                
-                writer.write(s.toString()+" ");
-                               
+                for(int c=0; c<cols; c++){
+                    
+                    Object s= cell.getcell(r, c);
+                    
+                    writer.write(s.toString()+" ");
+                                   
+                }
+                writer.write("\n");
             }
-            writer.write("\n");
+            writer.close();
+    
         }
-        writer.close();
+        else{
+            xls cell = new xls(filepath, sheetname);
+            rows= cell.getRowcount();
+            cols= cell.getcols();
+            
+            for(int r=0; r<rows; r++){
+                
+                for(int c=0; c<cols; c++){
+                    
+                    Object s= cell.getcell(r, c);
+                    
+                    writer.write(s.toString()+" ");
+                                   
+                }
+                writer.write("\n");
+            }
+            writer.close();
+    
+        }
+   
         
     }
 }
