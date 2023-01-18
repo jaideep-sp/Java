@@ -12,8 +12,7 @@ public class testfinal {
        static boolean c;
     public static void main(String[] args) throws IOException {
 
-        //File newfiFile = new File("/Users/jaideep/java/demo/src/data/test.txt");
-
+     
          check bCheck= new check();
         
         
@@ -21,7 +20,7 @@ public class testfinal {
 
        FileWriter writer = new FileWriter("testxls.txt",true);
 
-        String filepath="/Users/jaideep/java/demo/src/data/student.xls";
+        String filepath="<FileDir>/student.xls";
         String sheetname="Sheet1";
         
         c=bCheck.filecheck(filepath);
